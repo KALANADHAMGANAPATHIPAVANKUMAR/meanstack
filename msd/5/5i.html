@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>5i</title>
+</head>
+<body>
+    <p>Cart Quantity: <span id="quantity">0</span></p>
+    <button onclick="updateQuantity(1)">+1</button>
+    <button onclick="updateQuantity(-1)">Remove from cart</button>
+
+    <script>
+        let quantity = 0;
+        function updateQuantity(amount) {
+            quantity += amount;
+            if (quantity < 0) quantity = 0; // Prevent negative values
+            document.getElementById("quantity").innerText = quantity;
+        }
+    </script>
+</body>
+</html>

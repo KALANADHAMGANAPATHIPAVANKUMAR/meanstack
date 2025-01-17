@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <style>
+        button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+            width: 50px;
+            height: 50px;
+        }
+        #output {
+            margin-bottom: 20px;
+            font-size: 24px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 210px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculator</h1>
+    <div id="output">0</div>
+
+    <p>
+        <button onclick="append('7')">7</button>
+        <button onclick="append('8')">8</button>
+        <button onclick="append('9')">9</button>
+        <button onclick="append('/')">/</button>
+    </p>
+    <p>
+        <button onclick="append('4')">4</button>
+        <button onclick="append('5')">5</button>
+        <button onclick="append('6')">6</button>
+        <button onclick="append('*')">*</button>
+    </p>
+    <p>
+        <button onclick="append('1')">1</button>
+        <button onclick="append('2')">2</button>
+        <button onclick="append('3')">3</button>
+        <button onclick="append('-')">-</button>
+    </p>
+    <p>
+        <button onclick="append('0')">0</button>
+        <button onclick="append('.')">.</button>
+        <button onclick="clearOutput()">C</button>
+        <button onclick="append('+')">+</button>
+    </p>
+    <p>
+        <button style="width: 210px;" onclick="calculate()">=</button>
+    </p>
+
+    <script>
+        let calculation = "";
+
+        function append(value) {
+            if (calculation === "0" && value !== ".") {
+                calculation = ""; // Reset if the initial value is 0
+            }
+            calculation += value;
+            document.getElementById("output").innerText = calculation;
+        }
+
+        function calculate() {
+            try {
+                calculation = eval(calculation).toString(); // Evaluate and convert to string
+                document.getElementById("output").innerText = calculation;
+            } catch {
+                alert("Invalid calculation!");
+            }
+        }
+
+        function clearOutput() {
+            calculation = "";
+            document.getElementById("output").innerText = "0"; // Reset to 0
+        }
+    </script>
+</body>
+</html>

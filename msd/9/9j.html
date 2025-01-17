@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9j</title>
+</head>
+<body>
+    <input type="text" id="calcInput" placeholder="Enter calculation" />
+    <button onclick="calculate()">Calculate</button>
+    <p id="result"></p>
+    <script>
+        const resultDisplay = document.getElementById('result');
+        function calculate() {
+            const calc = document.getElementById('calcInput').value;
+            localStorage.setItem('calculation', calc);
+            resultDisplay.textContent = `Result: ${calc}`;
+        }
+        window.onload = () => {
+            const savedCalc = localStorage.getItem('calculation');
+            if (savedCalc) resultDisplay.textContent = `Result: ${savedCalc}`;
+        };
+    </script>
+</body>
+</html>

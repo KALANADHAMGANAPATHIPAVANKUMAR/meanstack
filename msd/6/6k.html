@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exercise 6k</title>
+</head>
+<body>
+    <script>
+        let quantity = 9;
+        let maxQuantity = 10;
+    
+        function addToCart(value) {
+            if (quantity + value > maxQuantity) {
+                alert("The cart is full");
+            } else {
+                quantity += value;
+                console.log(`Cart quantity: ${quantity}`);
+            }
+        }
+    
+        addToCart(2);
+    </script>
+    
+</body>
+</html>

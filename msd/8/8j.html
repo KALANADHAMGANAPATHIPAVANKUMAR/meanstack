@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heads or Tails Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: linear-gradient(45deg, #1e3c72, #2a5298);
+            color: white;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+        .buttons {
+            margin: 20px;
+        }
+        button {
+            background: #f7b733;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 10px;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        button:hover {
+            transform: scale(1.1);
+        }
+        .coin {
+            width: 150px;
+            height: 150px;
+            background: url('https://i.imgur.com/6jpNj52.png') no-repeat center/contain;
+            margin: 20px auto;
+            transform: rotateY(0deg);
+            transition: transform 1.5s ease-in-out;
+        }
+        .win {
+            color: #4caf50;
+            animation: fadeIn 1s ease-in-out, pop 1.5s ease-in-out infinite;
+        }
+        .lose {
+            color: #e91e63;
+            animation: fadeIn 1s ease-in-out;
+        }
+        #message {
+            font-size: 2rem;
+            margin: 20px;
+        }
+        #score {
+            font-size: 1.5rem;
+            margin-top: 20px;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @keyframes pop {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+    </style>
+</head>
+<body>
+    <h1>Heads or Tails Game</h1>
+    <div class="coin" id="coin"></div>
+    <div id="message"></div>
+    <div class="buttons">
+        <button onclick="playGame('heads')">Heads</button>
+        <button onclick="playGame('tails')">Tails</button>
+    </div>
+    <div id="score">Wins: 0 | Losses: 0</div>
+    
+    <script>
+        let score = JSON.parse(localStorage.getItem('score')) || { wins: 0, losses: 0 };
+        const coin = document.getElementById('coin');
+        const message = document.getElementById('message');
+        const scoreDisplay = document.getElementById('score');
+
+        function playGame(guess) {
+            const result = Math.random() < 0.5 ? 'heads' : 'tails';
+            
+            // Reset the coin animation
+            coin.style.transition = 'none';
+            coin.style.transform = 'rotateY(0deg)';
+            setTimeout(() => {
+                coin.style.transition = 'transform 1.5s ease-in-out';
+                const flipAngle = Math.random() > 0.5 ? 720 : 900; // Randomize flips
+                coin.style.transform = `rotateY(${flipAngle}deg)`;
+            }, 100);
+
+            // Show the result after the animation
+            setTimeout(() => {
+                if (result === 'heads') {
+                    coin.style.background = "url('https://i.imgur.com/6jpNj52.png') no-repeat center/contain";
+                } else {
+                    coin.style.background = "url('https://i.imgur.com/H9YjiXB.png') no-repeat center/contain";
+                }
+
+                // Update result message
+                if (guess === result) {
+                    message.innerHTML = `<span class="win">🎉 You Win! Great job!</span>`;
+                    score.wins++;
+                } else {
+                    message.innerHTML = `<span class="lose">🙌 Nice Try! The coin showed ${result}.</span>`;
+                    score.losses++;
+                }
+                localStorage.setItem('score', JSON.stringify(score));
+                updateScore();
+            }, 1500);
+        }
+
+        function updateScore() {
+            scoreDisplay.textContent = `Wins: ${score.wins} | Losses: ${score.losses}`;
+        }
+
+        // Initialize score on page load
+        window.onload = () => updateScore();
+    </script>
+</body>
+</html>

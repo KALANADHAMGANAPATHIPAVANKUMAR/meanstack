@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9i</title>
+</head>
+<body>
+    <button onclick="updateQuantity(2)">+2</button>
+    <button onclick="updateQuantity(3)">+3</button>
+    <button onclick="updateQuantity(-2)">-2</button>
+    <p>Cart quantity: <span id="quantity">0</span></p>
+    <script>
+        let quantity = 0;
+        function updateQuantity(change) {
+            quantity += change;
+            document.getElementById('quantity').textContent = quantity;
+        }
+    </script>
+</body>
+</html>

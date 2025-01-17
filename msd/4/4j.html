@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>4j</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .product {
+            border: 1px solid #ddd;
+            padding: 20px;
+            max-width: 300px;
+            text-align: center;
+        }
+
+        .price {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .button {
+            margin: 5px;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .add-to-cart {
+            background-color: yellow;
+        }
+
+        .buy-now {
+            background-color: orange;
+        }
+    </style>
+    <script>
+        function addToCart() {
+            alert('Added');
+        }
+
+        function buyNow() {
+            console.log('Loading...');
+            alert('Purchased');
+        }
+    </script>
+</head>
+<body>
+    <div class="product">
+        <h2>Adults Plain Cotton T-shirt</h2>
+        <p class="price">Price: $7.99</p>
+        <button class="button add-to-cart" onclick="addToCart()">Add to cart</button>
+        <button class="button buy-now" onclick="buyNow()">Buy now</button>
+    </div>
+</body>
+</html>

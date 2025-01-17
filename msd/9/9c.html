@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9c</title>
+</head>
+<body>
+    <button onclick="displayChoice('heads')">Heads</button>
+    <button onclick="displayChoice('tails')">Tails</button>
+    <p id="choice"></p>
+    <script>
+        function displayChoice(option) {
+            document.getElementById('choice').textContent = `You chose: ${option}`;
+        }
+    </script>
+</body>
+</html>

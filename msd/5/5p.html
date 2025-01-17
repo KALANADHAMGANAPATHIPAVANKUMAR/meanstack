@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+    <style>
+        button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculator</h1>
+    <p id="output"></p>
+    <p>
+        <button onclick="append('1')">1</button>
+        <button onclick="append('2')">2</button>
+        <button onclick="append('3')">3</button>
+        <button onclick="append('+')">+</button>
+        <button onclick="calculate()">=</button>
+    </p>
+
+    <script>
+        let calculation = "";
+
+        function append(value) {
+            calculation += value;
+            document.getElementById("output").innerText = calculation;
+        }
+
+        function calculate() {
+            try {
+                calculation = eval(calculation);
+                document.getElementById("output").innerText = calculation;
+            } catch {
+                alert("Invalid calculation!");
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Quantity Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #quantityDisplay {
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+        .reset {
+            background-color: #dc3545;
+        }
+        .reset:hover {
+            background-color: #a71d2a;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cart Quantity Management</h1>
+        <p>Manage the quantity of items in your cart using the buttons below:</p>
+        
+        <!-- Buttons -->
+        <button onclick="updateQuantity(1)">+1</button>
+        <button onclick="updateQuantity(2)">+2</button>
+        <button onclick="updateQuantity(3)">+3</button>
+        <button onclick="updateQuantity(-1)">-1</button>
+        <button class="reset" onclick="resetQuantity()">Reset</button>
+        <button onclick="addToCart()">Add to Cart</button>
+        
+        <!-- Display Quantity -->
+        <p id="quantityDisplay">Cart quantity: 0</p>
+    </div>
+
+    <script>
+        // Initialize cart quantity
+        let quantity = 0;
+
+        // Update quantity function
+        function updateQuantity(amount) {
+            quantity += amount;
+            if (quantity < 0) {
+                quantity = 0; // Ensure the quantity doesn't go below 0
+            }
+            updateDisplay();
+        }
+
+        // Reset quantity function
+        function resetQuantity() {
+            quantity = 0;
+            updateDisplay();
+        }
+
+        // Add to cart function
+        function addToCart() {
+            alert(`Successfully added ${quantity} items to your cart!`);
+            resetQuantity(); // Reset the cart quantity after adding to cart
+        }
+
+        // Update the display
+        function updateDisplay() {
+            document.getElementById('quantityDisplay').textContent = `Cart quantity: ${quantity}`;
+        }
+
+        // Ensure the quantity is displayed when the page first loads
+        window.onload = () => {
+            updateDisplay();
+        };
+    </script>
+</body>
+</html>

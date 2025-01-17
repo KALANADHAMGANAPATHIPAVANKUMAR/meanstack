@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>5h</title>
+</head>
+<body>
+    <p>Cart Quantity: <span id="quantity">0</span></p>
+    <button onclick="updateQuantity(1)">+1</button>
+    <button onclick="updateQuantity(4)">+4</button>
+    <button onclick="updateQuantity(5)">+5</button>
+
+    <script>
+        let quantity = 0;
+        function updateQuantity(amount) {
+            quantity += amount;
+            document.getElementById("quantity").innerText = quantity;
+        }
+    </script>
+</body>
+</html>

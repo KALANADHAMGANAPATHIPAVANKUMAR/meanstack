@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8e - Compare Equality</title>
+</head>
+<body>
+    <h1>8e - Compare Equality</h1>
+    <script>
+        function isSameProduct(product1, product2) {
+            return product1.name === product2.name && product1.price === product2.price;
+        }
+
+        let product1 = { name: 'basketball', price: 2095 };
+        let product2 = { name: 'basketball', price: 2095 };
+
+        let isSame = isSameProduct(product1, product2);
+        console.log(isSame);
+        document.write(`<p>Are the products the same? ${isSame}</p>`);
+    </script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 7 Exercises</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 10px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        .output {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #f9f9f9;
+        }
+        .calculator {
+            margin-top: 20px;
+        }
+        .calculator button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 18px;
+        }
+        .calculator .display {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 20px;
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lesson 7 Exercises</h1>
+    <h2>Outputs</h2>
+    <div id="output" class="output"></div>
+
+    <h2>Calculator</h2>
+    <div class="calculator">
+        <input type="text" id="calcDisplay" class="display" readonly />
+        <div>
+            <button onclick="updateCalculation('1')">1</button>
+            <button onclick="updateCalculation('2')">2</button>
+            <button onclick="updateCalculation('3')">3</button>
+            <button onclick="updateCalculation('+')">+</button>
+        </div>
+        <div>
+            <button onclick="updateCalculation('4')">4</button>
+            <button onclick="updateCalculation('5')">5</button>
+            <button onclick="updateCalculation('6')">6</button>
+            <button onclick="updateCalculation('-')">-</button>
+        </div>
+        <div>
+            <button onclick="updateCalculation('7')">7</button>
+            <button onclick="updateCalculation('8')">8</button>
+            <button onclick="updateCalculation('9')">9</button>
+            <button onclick="updateCalculation('*')">*</button>
+        </div>
+        <div>
+            <button onclick="updateCalculation('0')">0</button>
+            <button onclick="clearCalculation()">C</button>
+            <button onclick="updateCalculation('=')">=</button>
+            <button onclick="updateCalculation('/')">/</button>
+        </div>
+    </div>
+
+    <script>
+        // Exercise Outputs
+        const outputDiv = document.getElementById('output');
+        function displayOutput(message) {
+            outputDiv.innerHTML += `<p>${message}</p>`;
+        }
+
+        // 7a - Basic Greeting
+        function greet() {
+            displayOutput("Hello!");
+        }
+        greet();
+
+        // 7b - Greeting with Name
+        function greetWithName(name) {
+            displayOutput(`Hello ${name}!`);
+        }
+        greetWithName("Simon");
+
+        // 7c - Greeting with Default Name
+        function greetWithDefault(name) {
+            if (!name) {
+                displayOutput("Hi there!");
+            } else {
+                displayOutput(`Hello ${name}!`);
+            }
+        }
+        greetWithDefault();
+        greetWithDefault("Alice");
+
+        // 7d - Celsius to Fahrenheit
+        function convertToFahrenheit(celsius) {
+            return (celsius * 9) / 5 + 32;
+        }
+        displayOutput(`25°C is ${convertToFahrenheit(25)}°F`);
+
+        // 7e - Fahrenheit to Celsius
+        function convertToCelsius(fahrenheit) {
+            return ((fahrenheit - 32) * 5) / 9;
+        }
+        displayOutput(`86°F is ${convertToCelsius(86)}°C`);
+
+        // 7f - Convert Temperature
+        function convertTemperature(degrees, unit) {
+            if (unit === "C") {
+                return `${convertToFahrenheit(degrees)}°F`;
+            } else if (unit === "F") {
+                return `${convertToCelsius(degrees)}°C`;
+            } else {
+                return "Invalid unit";
+            }
+        }
+        displayOutput(convertTemperature(25, "C"));
+        displayOutput(convertTemperature(86, "F"));
+
+        // 7g/7h - Convert Length
+        function convertLength(length, from, to) {
+            const conversionRates = {
+                km: { miles: 1 / 1.6, feet: 3281 },
+                miles: { km: 1.6, feet: 5280 },
+                feet: { km: 1 / 3281, miles: 1 / 5280 },
+            };
+
+            if (conversionRates[from] && conversionRates[from][to]) {
+                return `${(length * conversionRates[from][to]).toFixed(2)} ${to}`;
+            } else if (from === to) {
+                return `${length} ${to}`;
+            } else {
+                return `Invalid unit: ${from} or ${to}`;
+            }
+        }
+        displayOutput(convertLength(50, "miles", "km"));
+        displayOutput(convertLength(5, "km", "feet"));
+        displayOutput(convertLength(5, "invalid", "miles"));
+
+        // 7j - Calculator Functionality
+        let calculation = ""; // Store the calculation string
+        function updateCalculation(input) {
+            const display = document.getElementById('calcDisplay');
+
+            if (input === "=") {
+                try {
+                    calculation = eval(calculation); // Evaluate the calculation
+                    display.value = calculation;
+                } catch (error) {
+                    display.value = "Error";
+                    calculation = "";
+                }
+            } else {
+                calculation += input; // Add input to the calculation
+                display.value = calculation;
+            }
+        }
+        function clearCalculation() {
+            calculation = "";
+            document.getElementById('calcDisplay').value = "";
+        }
+    </script>
+</body>
+</html>

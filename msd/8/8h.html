@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8h - Calculator with LocalStorage</title>
+</head>
+<body>
+    <h1>8h - Calculator</h1>
+    <input id="calculation" type="text" placeholder="Enter calculation" />
+    <button onclick="saveCalculation()">Save</button>
+    <p id="result"></p>
+    <script>
+        function saveCalculation() {
+            const calculation = document.getElementById('calculation').value;
+            localStorage.setItem('calculation', calculation);
+            document.getElementById('result').innerText = `Saved: ${calculation}`;
+        }
+
+        // Load calculation on page load
+        window.onload = () => {
+            const savedCalculation = localStorage.getItem('calculation') || '';
+            document.getElementById('result').innerText = `Last Calculation: ${savedCalculation}`;
+        };
+    </script>
+</body>
+</html>

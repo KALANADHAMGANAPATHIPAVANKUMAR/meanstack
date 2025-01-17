@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>8d - Compare Products</title>
+</head>
+<body>
+    <h1>8d - Compare Products</h1>
+    <script>
+        function comparePrice(product1, product2) {
+            return product1.price < product2.price ? product1 : product2;
+        }
+        
+        let product1 = { name: 'basketball', price: 2095 };
+        let product2 = { name: 'soccer ball', price: 1895 };
+        let cheaperProduct = comparePrice(product1, product2);
+
+        console.log(cheaperProduct);
+        document.write(`<pre>${JSON.stringify(cheaperProduct, null, 2)}</pre>`);
+    </script>
+</body>
+</html>

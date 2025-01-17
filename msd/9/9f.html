@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9f</title>
+</head>
+<body>
+    <input type="text" id="nameInput" placeholder="Enter your name" onkeydown="handleEvent(event)" />
+    <button onclick="handleEvent()">Submit</button>
+    <p id="output"></p>
+    <script>
+        function handleEvent(event) {
+            if (!event || event.key === 'Enter') {
+                const name = document.getElementById('nameInput').value;
+                document.getElementById('output').textContent = `Your name is: ${name}`;
+            }
+        }
+    </script>
+</body>
+</html>

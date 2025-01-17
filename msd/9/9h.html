@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9h</title>
+</head>
+<body>
+    <input type="text" id="textInput" placeholder="Type something" onkeyup="updateText()" />
+    <p id="liveText"></p>
+    <script>
+        function updateText() {
+            document.getElementById('liveText').textContent = document.getElementById('textInput').value;
+        }
+    </script>
+</body>
+</html>

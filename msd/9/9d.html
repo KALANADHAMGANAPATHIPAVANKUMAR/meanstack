@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>9d</title>
+</head>
+<body>
+    <input type="text" id="nameInput" placeholder="Enter your name" />
+    <button onclick="submitName()">Submit</button>
+    <p id="output"></p>
+    <script>
+        function submitName() {
+            const name = document.getElementById('nameInput').value;
+            document.getElementById('output').textContent = `Your name is: ${name}`;
+        }
+    </script>
+</body>
+</html>

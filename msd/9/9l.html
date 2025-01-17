@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 9 DOM Exercises</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        input {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
+        }
+        #quantityDisplay {
+            margin-top: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 9a: Create a <button>9a</button> -->
+    <button>9a</button>
+
+    <script>
+        // 9a: Use document.querySelector('button') to get the button from the page and display it in the console
+        const button9a = document.querySelector('button');
+        console.log(button9a);
+    </script>
+
+    <!-- 9b: Create another button <button>9b</button> -->
+    <button>9b</button>
+
+    <script>
+        // 9b: Change the text of the second button to '9b done!'
+        const button9b = document.querySelectorAll('button')[1];
+        button9b.textContent = '9b done!';
+    </script>
+
+    <!-- 9c: Create 'heads' and 'tails' buttons and a paragraph to display choices -->
+    <!-- Heads and Tails Buttons -->
+    <button id="heads">Heads</button>
+    <button id="tails">Tails</button>
+    
+    <!-- Paragraph to display the chosen option -->
+    <p id="userChoice">You chose: </p>
+    
+    <!-- Result display -->
+    <p id="result"></p>
+    
+    <!-- Cheer or appreciation -->
+    <p id="cheer"></p>
+
+    <script>
+        // Get elements
+        const headsButton = document.getElementById('heads');
+        const tailsButton = document.getElementById('tails');
+        const userChoice = document.getElementById('userChoice');
+        const resultDisplay = document.getElementById('result');
+        const cheerDisplay = document.getElementById('cheer');
+        const appreciationDisplay = document.getElementById('appreciation');
+
+        // Function to simulate coin flip
+        function flipCoin() {
+            return Math.random() < 0.5 ? 'heads' : 'tails';
+        }
+
+        // Function to handle when "Heads" button is clicked
+        headsButton.addEventListener('click', function() {
+            userChoice.textContent = 'You chose: heads';
+            const flipResult = flipCoin();
+            displayResult(flipResult, 'heads');
+        });
+
+        // Function to handle when "Tails" button is clicked
+        tailsButton.addEventListener('click', function() {
+            userChoice.textContent = 'You chose: tails';
+            const flipResult = flipCoin();
+            displayResult(flipResult, 'tails');
+        });
+
+        // Function to display the result of the coin flip and the user's result (win/lose)
+        function displayResult(flipResult, userChoice) {
+            resultDisplay.textContent = `Coin landed on: ${flipResult}`;
+
+            // Check if the user won or lost
+            if (flipResult === userChoice) {
+                cheerDisplay.textContent = 'Congratulations! You win!';
+                appreciationDisplay.textContent = ''; // Reset the appreciation message
+            } else {
+                appreciationDisplay.textContent = 'Sorry! Better luck next time!';
+                cheerDisplay.textContent = ''; // Reset the cheer message
+            }
+        }
+    </script>
+
+    <!-- 9d: Create a text box and submit button to display the name -->
+    <input type="text" id="nameInput" placeholder="Enter your name">
+    <button id="submit">Submit</button>
+    <p id="nameDisplay"></p>
+
+    <script>
+        // 9d: When clicking 'Submit', display 'Your name is: ${text}'
+        const nameInput = document.getElementById('nameInput');
+        const submitButton = document.getElementById('submit');
+        const nameDisplay = document.getElementById('nameDisplay');
+
+        submitButton.addEventListener('click', function() {
+            const name = nameInput.value;
+            nameDisplay.textContent = `Your name is: ${name}`;
+        });
+    </script>
+
+    <!-- 9e: Modify exercise 9d to display name when 'Enter' is pressed in input -->
+    <script>
+        // 9e: Display name on 'Enter' key press as well
+        nameInput.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                const name = nameInput.value;
+                nameDisplay.textContent = `Your name is: ${name}`;
+            }
+        });
+    </script>
+
+    <!-- 9f: Create a reusable function for name display -->
+    <script>
+        // 9f: Function to handle name display
+        function displayName() {
+            const name = nameInput.value;
+            nameDisplay.textContent = `Your name is: ${name}`;
+        }
+
+        submitButton.addEventListener('click', displayName);
+        nameInput.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                displayName();
+            }
+        });
+    </script>
+
+    <!-- 9g: Amazon Shipping Calculator fix -->
+    <h2>Amazon Shipping Calculator</h2>
+    <input type="number" id="cost" placeholder="Enter cost">
+    <button id="calculate">Calculate</button>
+    <p id="result"></p>
+
+    <script>
+        // 9g: Fix floating point precision issue in shipping calculator
+        document.getElementById('calculate').addEventListener('click', function() {
+            let cost = parseFloat(document.getElementById('cost').value);
+            const total = (cost * 2).toFixed(2);  // Fixed precision using toFixed(2)
+            document.getElementById('result').textContent = `$${total}`;
+        });
+    </script>
+
+    <!-- 9h: Update text on the page while typing in the textbox -->
+    <h2>Type in the text box</h2>
+    <input type="text" id="textBox">
+    <p id="typedText">onke</p>
+
+    <script>
+        // 9h: Update the text on the page while typing (onkeyup)
+        const textBox = document.getElementById('textBox');
+        const typedText = document.getElementById('typedText');
+
+        textBox.addEventListener('keyup', function() {
+            typedText.textContent = textBox.value;
+        });
+    </script>
+
+    <!-- 9i: Cart quantity management system -->
+    <h2>Cart Quantity</h2>
+    <button id="addToCart">Add to Cart</button>
+    <button id="addQuantity">+1</button>
+    <button id="removeQuantity">-1</button>
+    <button id="resetQuantity">Reset</button>
+    <p id="cartQuantity">Cart quantity: 0</p>
+
+    <script>
+        // 9i: Cart quantity functions
+        let cartQuantity = 0;
+
+        const addToCartButton = document.getElementById('addToCart');
+        const addQuantityButton = document.getElementById('addQuantity');
+        const removeQuantityButton = document.getElementById('removeQuantity');
+        const resetQuantityButton = document.getElementById('resetQuantity');
+        const cartQuantityDisplay = document.getElementById('cartQuantity');
+
+        addQuantityButton.addEventListener('click', function() {
+            cartQuantity++;
+            updateCartQuantity();
+        });
+
+        removeQuantityButton.addEventListener('click', function() {
+            if (cartQuantity > 0) {
+                cartQuantity--;
+            }
+            updateCartQuantity();
+        });
+
+        resetQuantityButton.addEventListener('click', function() {
+            cartQuantity = 0;
+            updateCartQuantity();
+        });
+
+        addToCartButton.addEventListener('click', function() {
+            alert(`Added ${cartQuantity} item(s) to your cart`);
+            cartQuantity = 0;
+            updateCartQuantity();
+        });
+
+        function updateCartQuantity() {
+            cartQuantityDisplay.textContent = `Cart quantity: ${cartQuantity}`;
+        }
+
+        // Display quantity when page loads
+        window.onload = updateCartQuantity;
+    </script>
+
+    <!-- 9j: Calculator project improvement (store calculations in localStorage) -->
+    <h2>Calculator</h2>
+    <input type="number" id="calcInput">
+    <button id="calculateButton">Calculate</button>
+    <p id="calcResult">Result: </p>
+
+    <script>
+        // 9j: Store calculation in localStorage and show on page load
+        const calcInput = document.getElementById('calcInput');
+        const calculateButton = document.getElementById('calculateButton');
+        const calcResult = document.getElementById('calcResult');
+
+        calculateButton.addEventListener('click', function() {
+            const result = parseFloat(calcInput.value);
+            localStorage.setItem('calcResult', result);
+            calcResult.textContent = `Result: ${result}`;
+        });
+
+        // Display result from localStorage when page loads
+        window.onload = function() {
+            const savedResult = localStorage.getItem('calcResult');
+            if (savedResult) {
+                calcResult.textContent = `Result: ${savedResult}`;
+            }
+        };
+    </script>
+
+</body>
+</html>
