@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Class Check</title>
+    <style>
+        .js-button {
+            padding: 12px 25px;
+            font-size: 16px;
+            border: 2px solid white;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: transparent;
+            color: white;
+            font-weight: bold;
+        }
+
+        body {
+            background-color: black;
+            color: white;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>JavaScript Class Check</h2>
+    <button class="js-button">Test</button>
+
+    <script>
+        // Select the button
+        const button = document.querySelector('.js-button');
+
+        // Check if it has the class 'js-button'
+        console.log("Does the button have 'js-button' class?", button.classList.contains('js-button'));
+    </script>
+
+</body>
+</html>
